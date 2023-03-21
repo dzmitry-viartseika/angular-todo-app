@@ -1,11 +1,14 @@
 <footer class="footer" [ngClass]="{hidden: noToDoClass$ | async}">
   <span class="todo-count">
-    {{ toDOLength$ | async }}
+    <strong>{{ activeCount$ | async }}</strong>
+    {{ itemsLeftText$ | async }}
   </span>
   <ul class="filters">
     <li>
       <a
         href="/"
+        [ngClass]="{selected: (filter$ | async) === filterEnum.all}"
+        (click)="changeFilter($event, filterEnum.all)"
       >
         All
       </a>
@@ -13,6 +16,8 @@
     <li>
       <a
         href="/"
+        [ngClass]="{selected: (filter$ | async) === filterEnum.active}"
+        (click)="changeFilter($event, filterEnum.active)"
       >
         Active
       </a>
@@ -21,6 +26,8 @@
     <li>
       <a
         href="/"
+        [ngClass]="{selected: (filter$ | async) === filterEnum.completed}"
+        (click)="changeFilter($event, filterEnum.completed)"
       >
         Completed
       </a>
