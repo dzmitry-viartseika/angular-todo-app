@@ -6,6 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/main/main.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodosService } from './services/todos.service';
+import { CommonModule } from "@angular/common";
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
     MainComponent,
     TodoItemComponent
   ],
-  imports: [RouterModule.forChild(routes)],
+  imports: [CommonModule, RouterModule.forChild(routes)],
   providers: [TodosService],
 })
 export class TodosModule {

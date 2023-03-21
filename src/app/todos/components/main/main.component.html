@@ -1,0 +1,13 @@
+<section class="main" [ngClass]="{ hidden: noToDoClass$ | async }">
+  <input
+    type="checkbox"
+    id="toggle-all"
+    class="toggle-all"
+    [checked]="isAllTodosSelected$ | async"
+    (change)="toggleAllTodos($event)"
+  >
+  <label for="toggle-all">Mark all as completed</label>
+  <ul class="todo-list">
+    <app-todo-item *ngFor="let item of visibleTodos$ | async" [item]="item"></app-todo-item>
+  </ul>
+</section>

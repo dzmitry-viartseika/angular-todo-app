@@ -1,0 +1,29 @@
+<footer class="footer" [ngClass]="{hidden: noToDoClass$ | async}">
+  <span class="todo-count">
+    {{ toDOLength$ | async }}
+  </span>
+  <ul class="filters">
+    <li>
+      <a
+        href="/"
+      >
+        All
+      </a>
+    </li>
+    <li>
+      <a
+        href="/"
+      >
+        Active
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="/"
+      >
+        Completed
+      </a>
+    </li>
+  </ul>
+</footer>
