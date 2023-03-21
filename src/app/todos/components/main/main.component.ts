@@ -13,6 +13,7 @@ export class MainComponent {
   visibleTodos$: Observable<ITodoItem[]>;
   noToDoClass$: Observable<boolean>;
   isAllTodosSelected$: Observable<boolean>;
+  isEditingID: string | null = null;
   constructor(private todosService: TodosService) {
     this.noToDoClass$ = this.todosService.todos$.pipe(map((todos) => todos.length === 0));
     this.isAllTodosSelected$ = this.todosService.todos$.pipe(map((todos) => todos.every((item) => item.isCompleted)));
@@ -30,8 +31,12 @@ export class MainComponent {
     }))
   }
 
-  public toggleAllTodos = (event: Event): void =>{
+  toggleAllTodos(event: any): void {
     const target = event.target as HTMLInputElement;
     this.todosService.toggleAll(target.checked);
+  }
+
+  public setEditingID = (itemID: string | null): void => {
+    this.isEditingID = itemID;
   }
 }

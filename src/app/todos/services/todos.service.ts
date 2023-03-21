@@ -34,8 +34,36 @@ export class TodosService {
     this.filter$.next(filterName);
   }
 
-  public deleteToDo = (id: string): void => {};
+  public deleteItem = (itemID: string): void => {
+    const updatedTodos = this.todos$.getValue().filter((item: ITodoItem) => item.id !== itemID);
+    this.todos$.next(updatedTodos);
+  };
 
+  changeTodo(id: string, text: string): void {
+    const updatedTodos = this.todos$.getValue().map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          text,
+        };
+      }
 
+      return todo;
+    });
+    this.todos$.next(updatedTodos);
+  }
 
+  toggleTodo = (id: string):void => {
+    const updatedTodos = this.todos$.getValue().map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          isCompleted: !item.isCompleted,
+        }
+      }
+      return item
+    })
+
+    this.todos$.next(updatedTodos);
+  }
 }
